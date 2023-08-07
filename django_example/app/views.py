@@ -6,7 +6,7 @@ def index(request):
     data=Student.objects.all()
     print(data)
     context = {"data":data}
-    return render(request, "index.html", context)
+    return render(request, "index.html",context)
 
 def insertData(request):
     if request.method=="POST":
