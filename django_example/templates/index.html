@@ -47,7 +47,14 @@
               </form>
             </div>
             <div class="col-md-8">
+
               <h2 class="text-center text-white bg-dark p-2">Student Details</h2>
+              {% for message in messages %}
+              <div class="alert alert-{{message.tags}} alert-dismissable fade show" role="alert">
+                <b>{{message}}</b>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            {% endfor %}
               <table class="table">
                 <thead>
                   <tr>

@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from .models import Student
+from django.contrib import messages
 # Create your views here.
 
 def index(request):
@@ -17,6 +18,7 @@ def insertData(request):
         print(name,email,age,gender)
         query=Student(name=name,email=email,age=age,gender=gender)
         query.save()
+        messages.info(request, "Data Inserted Successfully")
         return redirect("/")
     return render(request, "index.html")
 
@@ -34,7 +36,7 @@ def updateData(request,id):
         edit.age=age
         edit.gender=gender
         edit.save()
-
+        messages.warning(request, "Data updated Successfully")
         return redirect("/")
 
     d =Student.objects.get(id=id)
@@ -44,6 +46,7 @@ def updateData(request,id):
 def deleteData(request,id):
     d =Student.objects.get(id=id)
     d.delete()
+    messages.error(request, "Data deleted Successfully")
     return redirect("/")
 
     return render(request, "delete.html",context)
