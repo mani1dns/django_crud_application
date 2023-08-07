@@ -37,15 +37,14 @@ def updateData(request,id):
 
         return redirect("/")
 
-    d = data=Student.objects.get(id=id)
+    d =Student.objects.get(id=id)
     context = {"d":d}
     return render(request, "edit.html",context)
 
 def deleteData(request,id):
-    data=Student.objects.all()
-    print(data)
-    context = {"data":data}
-
+    d =Student.objects.get(id=id)
+    d.delete()
+    return redirect("/")
 
     return render(request, "delete.html",context)
 
