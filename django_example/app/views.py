@@ -3,7 +3,10 @@ from .models import Student
 # Create your views here.
 
 def index(request):
-    return render(request, "index.html")
+    data=Student.objects.all()
+    print(data)
+    context = {"data":data}
+    return render(request, "index.html", context)
 
 def insertData(request):
     if request.method=="POST":
@@ -14,7 +17,7 @@ def insertData(request):
         print(name,email,age,gender)
         query=Student(name=name,email=email,age=age,gender=gender)
         query.save()
-    return render(request, "index.html")
+    return render(request, "index.html,context")
 
 def about(request):
     return render(request, "about.html")
